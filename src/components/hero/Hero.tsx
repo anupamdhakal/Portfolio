@@ -1,17 +1,7 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { siteConfig } from "@/config/site";
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // Trigger entrance animation on mount
-    const timer = setTimeout(() => setMounted(true), 50);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section
       id="hero"
@@ -20,63 +10,49 @@ export function Hero() {
     >
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
         {/* Subtle decorative quote indicator */}
-        <div
-          className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 mb-6 text-neutral-600
-            ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-        >
-          <span className="font-mono text-xs uppercase tracking-widest text-neutral-500 border border-neutral-800/80 rounded-full px-3.5 py-1 bg-neutral-900/40">
+        <div className="animate-hero-tag mb-6">
+          <span className="font-mono text-[11px] uppercase tracking-widest text-[#787d8c] border border-[#1e2129] rounded-full px-3.5 py-1 bg-[#121419]/70">
             Perspective
           </span>
         </div>
 
-        {/* The Quote */}
-        <blockquote
-          className={`transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150
-            ${
-              mounted
-                ? "opacity-100 translate-y-0 blur-none"
-                : "opacity-0 translate-y-6 blur-[3px]"
-            }`}
-        >
-          <p className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-neutral-100 leading-[1.25] sm:leading-[1.18] selection:bg-neutral-800 selection:text-neutral-100">
+        {/* The Quote - calm, no artificial blur or harsh scaling */}
+        <blockquote className="animate-hero-quote">
+          <p className="text-3xl sm:text-5xl lg:text-[3.35rem] font-light tracking-tight text-[#eeeff2] leading-[1.28] sm:leading-[1.2] selection:bg-[#232732] selection:text-[#f3f4f6]">
             &ldquo;{siteConfig.hero.quote}&rdquo;
           </p>
         </blockquote>
 
         {/* Attribution */}
         {siteConfig.hero.author && (
-          <footer
-            className={`mt-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-300
-              ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          >
-            <cite className="not-italic text-sm sm:text-base font-normal text-neutral-400 tracking-wide">
+          <footer className="animate-hero-author mt-8">
+            <cite className="not-italic text-sm sm:text-base font-normal text-[#8a8f9d] tracking-wide">
               — {siteConfig.hero.author}
             </cite>
           </footer>
         )}
       </div>
 
-      {/* Subtle bottom scroll hint */}
-      <div
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-700 delay-500
-          ${mounted ? "opacity-40 hover:opacity-80" : "opacity-0"}`}
-      >
+      {/* Understated bottom scroll hint - calm, non-bouncing */}
+      <div className="animate-hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2">
         <a
           href="#about"
           aria-label="Scroll to About section"
-          className="flex flex-col items-center gap-1.5 text-xs text-neutral-400 font-mono tracking-wider transition-colors hover:text-neutral-200"
+          className="group flex flex-col items-center gap-1.5 text-xs text-[#707583] font-mono tracking-wider transition-colors duration-300 hover:text-[#c4c8d3]"
         >
-          <span className="text-[11px] uppercase tracking-widest">Scroll</span>
+          <span className="text-[10px] uppercase tracking-widest text-[#626774] group-hover:text-[#a0a5b4] transition-colors duration-300">
+            Scroll
+          </span>
           <svg
-            className="w-4 h-4 animate-bounce"
+            className="w-3.5 h-3.5 text-[#626774] group-hover:text-[#a0a5b4] transition-transform duration-300 ease-out group-hover:translate-y-0.5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            strokeWidth="1.5"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="1.5"
               d="M19 14l-7 7m0 0l-7-7m7 7V3"
             />
           </svg>

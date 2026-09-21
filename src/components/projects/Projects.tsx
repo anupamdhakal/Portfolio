@@ -12,18 +12,18 @@ export function Projects({ repos }: ProjectsProps) {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="py-24 sm:py-32 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto w-full"
+      className="py-24 sm:py-32 px-6 sm:px-12 md:px-20 max-w-6xl mx-auto w-full"
     >
-      <div className="border-t border-neutral-800/80 pt-12 sm:pt-16 mb-12 sm:mb-16">
+      <div className="border-t border-[#1a1d24] pt-12 sm:pt-16 mb-10 sm:mb-14">
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
           <div>
             <h2
               id="projects-heading"
-              className="text-xs font-mono uppercase tracking-widest text-neutral-400 font-medium"
+              className="text-xs font-mono uppercase tracking-widest text-[#727785] font-medium"
             >
               {siteConfig.projects.heading}
             </h2>
-            <p className="mt-2 text-lg sm:text-xl text-neutral-300 font-normal">
+            <p className="mt-2 text-lg sm:text-xl text-[#c4c7d0] font-normal">
               {siteConfig.projects.subheading}
             </p>
           </div>
@@ -32,11 +32,11 @@ export function Projects({ repos }: ProjectsProps) {
             href={siteConfig.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 hover:text-white transition-colors"
+            className="group inline-flex items-center gap-1.5 text-xs font-mono text-[#787d8c] hover:text-[#eeeff2] transition-colors duration-300"
           >
             <span>View all on GitHub</span>
             <svg
-              className="w-3.5 h-3.5"
+              className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -50,7 +50,7 @@ export function Projects({ repos }: ProjectsProps) {
       </div>
 
       {/* Projects Grid: 2 columns on desktop, 1 column on mobile/tablet */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
         {repos.map((repo, idx) => (
           <ProjectCard key={repo.url + idx} repo={repo} index={idx} />
         ))}

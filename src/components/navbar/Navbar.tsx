@@ -102,14 +102,14 @@ export function Navbar() {
             setIsHovered(false);
           }
         }}
-        className={`pointer-events-auto flex items-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+        className={`pointer-events-auto flex items-center transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)]
           backdrop-blur-xl border select-none
           ${
             scrolled
-              ? "bg-neutral-950/90 border-neutral-800 shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
-              : "bg-neutral-900/80 border-neutral-800/80 shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
+              ? "bg-[#0e1014]/92 border-[#22252e] shadow-[0_12px_36px_rgba(0,0,0,0.55)]"
+              : "bg-[#13151b]/85 border-[#20232c]/85 shadow-[0_6px_24px_rgba(0,0,0,0.3)]"
           }
-          rounded-full px-4 py-2.5 sm:px-5 sm:py-2.5 max-w-fit`}
+          rounded-full px-4 py-2 sm:px-5 sm:py-2.5 max-w-fit`}
       >
         {/* Brand / Name button */}
         <a
@@ -119,14 +119,14 @@ export function Navbar() {
             window.scrollTo({ top: 0, behavior: "smooth" });
             window.history.pushState(null, "", window.location.pathname);
           }}
-          className="flex items-center gap-2.5 text-neutral-100 font-semibold tracking-tight text-sm sm:text-base group whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 rounded-full"
+          className="flex items-center gap-2.5 text-[#eeeff2] font-medium tracking-tight text-sm sm:text-base group whitespace-nowrap focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#444a59] rounded-full"
         >
-          {/* Status beacon dot */}
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          {/* Status beacon dot - calm, understated */}
+          <span className="relative flex h-2 w-2 items-center justify-center">
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+            <span className="absolute inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500/15 ring-1 ring-emerald-500/25" />
           </span>
-          <span className="transition-colors duration-200 group-hover:text-white">
+          <span className="transition-colors duration-300 group-hover:text-white">
             {siteConfig.personal.name}
           </span>
         </a>
@@ -135,12 +135,12 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setIsMobileOpen((prev) => !prev)}
-          className="md:hidden ml-2.5 p-1 text-neutral-400 hover:text-white focus:outline-none"
+          className="md:hidden ml-2.5 p-1 text-[#828694] hover:text-[#eeeff2] transition-colors duration-250 focus:outline-none"
           aria-expanded={isExpanded}
           aria-label={isExpanded ? "Collapse navigation menu" : "Expand navigation menu"}
         >
           <svg
-            className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? "rotate-90 text-white" : ""}`}
+            className={`w-4 h-4 transition-transform duration-300 ease-out ${isExpanded ? "rotate-90 text-[#eeeff2]" : ""}`}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -165,10 +165,10 @@ export function Navbar() {
 
         {/* Expanding Links Container */}
         <div
-          className={`flex items-center overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+          className={`flex items-center overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)]
             ${
               isExpanded
-                ? "max-w-[340px] opacity-100 ml-3 sm:ml-4 pl-3 sm:pl-4 border-l border-neutral-800"
+                ? "max-w-[340px] opacity-100 ml-3 sm:ml-4 pl-3 sm:pl-4 border-l border-[#22252e]"
                 : "max-w-0 opacity-0 ml-0 pl-0 border-transparent pointer-events-none"
             }`}
         >
@@ -181,13 +181,13 @@ export function Navbar() {
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   tabIndex={isExpanded ? 0 : -1}
-                  className={`text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 rounded-full transition-all duration-200
+                  className={`text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 rounded-full transition-colors duration-250
                     ${
                       isActive
-                        ? "text-white bg-neutral-800 shadow-sm"
-                        : "text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800/60"
+                        ? "text-[#f0f1f4] bg-[#1c1f28]"
+                        : "text-[#828694] hover:text-[#eeeff2] hover:bg-[#181a22]/70"
                     }
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400`}
+                    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#444a59]`}
                 >
                   {link.label}
                 </a>

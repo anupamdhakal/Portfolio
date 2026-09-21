@@ -16,43 +16,36 @@ export function SocialLinks() {
       name: "GitHub",
       url: siteConfig.social.github,
       icon: GitHubIcon,
-      hoverClass: "hover:border-neutral-500 hover:text-white",
     },
     {
       name: "Facebook",
       url: siteConfig.social.facebook,
       icon: FacebookIcon,
-      hoverClass: "hover:border-[#1877F2]/60 hover:text-[#1877F2]",
     },
     {
       name: "Instagram",
       url: siteConfig.social.instagram,
       icon: InstagramIcon,
-      hoverClass: "hover:border-[#E1306C]/60 hover:text-[#E1306C]",
     },
     {
       name: "LinkedIn",
       url: siteConfig.social.linkedin,
       icon: LinkedInIcon,
-      hoverClass: "hover:border-[#0A66C2]/60 hover:text-[#0A66C2]",
     },
     {
       name: "Spotify",
       url: siteConfig.social.spotify,
       icon: SpotifyIcon,
-      hoverClass: "hover:border-[#1DB954]/60 hover:text-[#1DB954]",
     },
     {
       name: "YouTube",
       url: siteConfig.social.youtube,
       icon: YouTubeIcon,
-      hoverClass: "hover:border-[#FF0000]/60 hover:text-[#FF0000]",
     },
     {
       name: "TikTok",
       url: siteConfig.social.tiktok,
       icon: TikTokIcon,
-      hoverClass: "hover:border-neutral-400 hover:text-white",
     },
   ];
 
@@ -60,22 +53,22 @@ export function SocialLinks() {
     <section
       id="social"
       aria-label="Social Profiles"
-      className="py-16 sm:py-20 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto w-full"
+      className="py-16 sm:py-20 px-6 sm:px-12 md:px-20 max-w-6xl mx-auto w-full"
     >
-      <div className="border-t border-neutral-800/80 pt-10 sm:pt-12">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+      <div className="border-t border-[#1a1d24] pt-10 sm:pt-12">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
           <div>
-            <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-400 font-medium">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-[#727785] font-medium">
               Network &amp; Channels
             </h2>
-            <p className="mt-1 text-sm text-neutral-400">
-              Profiles across development, media, and social platforms.
+            <p className="mt-1 text-xs sm:text-sm text-[#7e8391]">
+              Profiles across development, media, and communication platforms.
             </p>
           </div>
         </div>
 
         {/* The 7 Social Links */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 sm:gap-3">
           {socials.map((platform) => {
             const Icon = platform.icon;
             return (
@@ -85,17 +78,17 @@ export function SocialLinks() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${platform.name} profile (opens in new tab)`}
-                className={`group flex flex-col items-center justify-center gap-3 p-4 sm:p-5 rounded-xl border border-neutral-800/80 bg-neutral-900/30 text-neutral-400 backdrop-blur-sm transition-all duration-300 hover:bg-neutral-900/80 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 ${platform.hoverClass}`}
+                className="group flex flex-col items-center justify-center gap-2.5 p-3.5 sm:p-4 rounded-xl border border-[#1e2129] bg-[#121419]/60 text-[#7a7f8e] backdrop-blur-sm transition-all duration-300 hover:bg-[#161821] hover:border-[#2b2f3c] hover:text-[#eeeff2] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#444a59]"
               >
-                <div className="transition-transform duration-300 group-hover:scale-110">
-                  <Icon size={22} />
+                <div className="text-[#767b8a] group-hover:text-[#dedfe4] transition-colors duration-300">
+                  <Icon size={19} />
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="text-xs font-medium text-neutral-300 group-hover:text-inherit transition-colors">
+                  <span className="text-xs font-mono text-[#6c717e] group-hover:text-[#c2c5ce] transition-colors duration-300">
                     {platform.name}
                   </span>
                   <svg
-                    className="w-3 h-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"
+                    className="w-2.5 h-2.5 opacity-0 -translate-x-0.5 translate-y-0.5 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 text-[#828694]"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"

@@ -7,35 +7,32 @@ interface ProjectCardProps {
   index: number;
 }
 
-// Map common languages to their authentic brand colors
+// Map common languages to subtle, restrained indicator colors
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: "#3178c6",
-  JavaScript: "#f1e05a",
-  HTML: "#e34c26",
-  CSS: "#563d7c",
+  JavaScript: "#e5a93c",
+  HTML: "#d34423",
+  CSS: "#663399",
   Python: "#3572A5",
-  Rust: "#dea584",
+  Rust: "#ce8a67",
   Go: "#00ADD8",
-  C: "#555555",
-  "C++": "#f34b7d",
-  Shell: "#89e051",
+  C: "#6e7381",
+  "C++": "#d83b6f",
+  Shell: "#72b347",
 };
 
-export function ProjectCard({ repo, index }: ProjectCardProps) {
-  const languageColor = (repo.language && LANGUAGE_COLORS[repo.language]) || "#a3a3a3";
+export function ProjectCard({ repo }: ProjectCardProps) {
+  const languageColor = (repo.language && LANGUAGE_COLORS[repo.language]) || "#787d8c";
 
   return (
-    <div className="group relative rounded-2xl border border-neutral-800/90 bg-neutral-900/40 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900/80 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex flex-col justify-between">
-      {/* Subtle top-edge accent highlight on hover */}
-      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-neutral-600/0 to-transparent transition-opacity duration-300 group-hover:via-neutral-400/40" />
-
+    <div className="group relative rounded-xl border border-[#1e2129] bg-[#121419]/70 backdrop-blur-sm overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:border-[#2b2f3c] hover:bg-[#151821] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(0,0,0,0.35)] flex flex-col justify-between">
       {/* Main card content */}
-      <div className="p-7 sm:p-9 flex-1 flex flex-col">
+      <div className="p-6 sm:p-7 flex-1 flex flex-col">
         {/* Card Header: Language & Stars */}
-        <div className="flex items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-2.5">
             {repo.language && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 bg-neutral-800/80 px-2.5 py-1 rounded-md border border-neutral-700/50">
+              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#8a8f9d] bg-[#161820] px-2.5 py-1 rounded-md border border-[#20232c]">
                 <span
                   className="w-2 h-2 rounded-full shrink-0"
                   style={{ backgroundColor: languageColor }}
@@ -46,9 +43,9 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
             )}
 
             {repo.stars > 0 && (
-              <span className="inline-flex items-center gap-1 text-xs font-mono text-neutral-400 bg-neutral-800/60 px-2.5 py-1 rounded-md border border-neutral-700/40">
+              <span className="inline-flex items-center gap-1 text-xs font-mono text-[#8a8f9d] bg-[#161820] px-2.5 py-1 rounded-md border border-[#20232c]">
                 <svg
-                  className="w-3.5 h-3.5 text-amber-400 fill-amber-400"
+                  className="w-3.5 h-3.5 text-amber-400/90 fill-amber-400/90"
                   viewBox="0 0 24 24"
                 >
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -64,14 +61,14 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View ${repo.name} repository on GitHub`}
-            className="p-2 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+            className="p-1.5 rounded-lg text-[#6e7382] hover:text-[#eeeff2] hover:bg-[#1b1e27] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#444a59]"
           >
-            <GitHubIcon size={18} />
+            <GitHubIcon size={17} />
           </a>
         </div>
 
         {/* Project Name */}
-        <h3 className="text-xl sm:text-2xl font-semibold text-neutral-100 tracking-tight transition-colors group-hover:text-white">
+        <h3 className="text-lg sm:text-xl font-medium text-[#eeeff2] tracking-tight transition-colors duration-300 group-hover:text-white">
           <a
             href={repo.url}
             target="_blank"
@@ -83,17 +80,17 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
         </h3>
 
         {/* Description */}
-        <p className="mt-3 text-sm sm:text-base text-neutral-400 font-normal leading-relaxed flex-1">
+        <p className="mt-2.5 text-sm text-[#858a97] font-normal leading-relaxed flex-1">
           {repo.description || "Open source project on GitHub."}
         </p>
 
         {/* Topics / Tags if available */}
         {repo.topics && repo.topics.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-1.5">
+          <div className="mt-5 flex flex-wrap gap-1.5">
             {repo.topics.slice(0, 4).map((topic) => (
               <span
                 key={topic}
-                className="text-[11px] font-mono text-neutral-500 bg-neutral-800/40 px-2 py-0.5 rounded border border-neutral-800"
+                className="text-[11px] font-mono text-[#6c717e] bg-[#161820] px-2 py-0.5 rounded border border-[#1f222b]"
               >
                 #{topic}
               </span>
@@ -102,18 +99,18 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
         )}
       </div>
 
-      {/* Masked / Contained Bottom Visual Treatment */}
-      <div className="border-t border-neutral-800/80 bg-neutral-950/40 px-7 py-3.5 sm:px-9 flex items-center justify-between text-xs font-mono text-neutral-500">
-        <span className="truncate max-w-[240px] sm:max-w-xs">{repo.fullName}</span>
+      {/* Contained Bottom Repository Reference Bar */}
+      <div className="border-t border-[#1a1d24] bg-[#0e1014]/50 px-6 sm:px-7 py-3 flex items-center justify-between text-xs font-mono text-[#5e6371]">
+        <span className="truncate max-w-[200px] sm:max-w-xs">{repo.fullName}</span>
         <a
           href={repo.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-neutral-400 hover:text-neutral-200 transition-colors"
+          className="inline-flex items-center gap-1 text-[#787d8c] hover:text-[#eeeff2] transition-colors duration-300"
         >
           <span>Repository</span>
           <svg
-            className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

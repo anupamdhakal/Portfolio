@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #090a0c;
-  --foreground: #f3f4f6;
+  --background: #0c0d10;
+  --foreground: #eeeff2;
 }
 
 @theme inline {
@@ -22,36 +22,67 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle dark background ambient grid / noise for depth */
+/* Natural, understated ambient depth for subtle hierarchy */
 .ambient-mesh {
-  background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 70% 45% at 50% -10%, rgba(140, 155, 185, 0.035) 0%, transparent 70%);
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Custom scrollbar */
+/* Subtle, calm entrance animation */
+@keyframes heroEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-tag {
+  animation: heroEntrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-hero-quote {
+  animation: heroEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-hero-author {
+  animation: heroEntrance 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-hero-scroll {
+  animation: heroEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Custom restrained scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090a0c;
+  background: #0c0d10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #20232b;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #383838;
+  background: #2b303a;
 }
 
-/* Accessibility: Respect prefers-reduced-motion */
+/* Accessibility: Respect prefers-reduced-motion strictly */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;

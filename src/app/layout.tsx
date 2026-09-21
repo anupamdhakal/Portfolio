@@ -19,7 +19,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#090a0c",
+  themeColor: "#0c0d10",
 };
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-screen bg-[#090a0c] text-neutral-100 flex flex-col relative selection:bg-neutral-800 selection:text-white">
+      <body className="min-h-screen bg-[#0c0d10] text-[#eeeff2] flex flex-col relative selection:bg-[#232732] selection:text-[#f3f4f6]">
         <div className="ambient-mesh" aria-hidden="true" />
         {children}
       </body>

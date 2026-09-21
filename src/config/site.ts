@@ -82,7 +82,7 @@ export const siteConfig: SiteConfig = {
   // ----------------------------------------------------------------------------
   personal: {
     name: "Anupam Dhakal",
-    role: "Software Developer & Engineering Enthusiast",
+    role: "Software Developer & Music Producer",
     location: "Nepal",
   },
 
@@ -92,8 +92,8 @@ export const siteConfig: SiteConfig = {
   // The Hero section prominently displays this single quote with entrance animation.
   // Edit the quote text below to customize your headline message.
   hero: {
-    quote: "Simplicity is prerequisite for reliability, and clarity is the essence of enduring software.",
-    author: "Anupam Dhakal",
+    quote: "Turning ideas into thoughtful, reliable solutions.",
+    author: "",
   },
 
   // ----------------------------------------------------------------------------
@@ -103,7 +103,7 @@ export const siteConfig: SiteConfig = {
   about: {
     heading: "About",
     introduction:
-      "I am a developer driven by craft, system performance, and thoughtful engineering. I focus on building responsive web applications, privacy-conscious developer tooling, and modular architectures where reliability and clean code come first.",
+      "Building clean, responsive websites while exploring new technology and creative ideas.",
   },
 
   // ----------------------------------------------------------------------------
@@ -142,7 +142,7 @@ export const siteConfig: SiteConfig = {
         github: "https://github.com/anupamdhakal/FSS_TAP",
         fallbackTitle: "FSS_TAP",
         fallbackDescription:
-          "Test automation and protocol utility for streaming architectures and systems.",
+          "An all-in-one school management system for attendance, finance, and more using NFC cards.",
         fallbackLanguage: "JavaScript",
       },
     ],
@@ -166,12 +166,12 @@ export const siteConfig: SiteConfig = {
   // Replace placeholder URLs with your personal profiles when ready.
   social: {
     github: "https://github.com/anupamdhakal",
-    facebook: "https://facebook.com/your-profile", // Replace with your Facebook profile URL
-    instagram: "https://instagram.com/your-profile", // Replace with your Instagram profile URL
-    linkedin: "https://linkedin.com/in/your-profile", // Replace with your LinkedIn profile URL
-    spotify: "https://open.spotify.com/user/your-profile", // Replace with your Spotify profile URL
-    youtube: "https://youtube.com/@your-channel", // Replace with your YouTube channel URL
-    tiktok: "https://tiktok.com/@your-profile", // Replace with your TikTok profile URL
+    facebook: "https://www.facebook.com/anupam.dhakal.2", // Replace with your Facebook profile URL
+    instagram: "https://instagram.com/mintlinuser", // Replace with your Instagram profile URL
+    linkedin: "https://www.linkedin.com/in/anupam-dhakal-2955a0412/", // Replace with your LinkedIn profile URL
+    spotify: "https://open.spotify.com/artist/2BWvNBcEzPzYUcnM4MLRPK", // Replace with your Spotify profile URL
+    youtube: "https://www.youtube.com/@anupammusicofficial1", // Replace with your YouTube channel URL
+    tiktok: "https://www.tiktok.com/@anupam.dhakal65", // Replace with your TikTok profile URL
   },
 
   // ----------------------------------------------------------------------------
@@ -181,6 +181,6 @@ export const siteConfig: SiteConfig = {
   footer: {
     name: "Anupam Dhakal",
     copyrightYear: 2026,
-    tagline: "Desktop-first personal portfolio crafted with precision.",
+    tagline: "",
   },
 };
