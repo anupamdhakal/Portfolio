@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anupam Dhakal | Software Developer & Music Producer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Devicon for Tech Stack Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    
+    <!-- FontAwesome for Social & Music Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Background Glow -->
+    <div class="ambient-glow"></div>
+
+    <!-- Sticky Expanding Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">Anupam Dhakal</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-section">
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-quote">"Ideas, Brought to life."</h1>
+            <div class="hero-line"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container scroll-reveal">
+            <h2 class="section-title">About</h2>
+            <p class="section-text">
+                Building clean, responsive websites while exploring new technology and creative ideas. 
+                I blend software engineering with artistic vision to craft digital experiences that are 
+                both functional and visually compelling.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container scroll-reveal">
+            <h2 class="section-title">Skill Set</h2>
+            <div class="skills-grid">
+                <!-- Tech Icons with Tooltips -->
+                <div class="skill-item" data-tooltip="HTML5">
+                    <i class="devicon-html5-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="CSS3">
+                    <i class="devicon-css3-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="JavaScript">
+                    <i class="devicon-javascript-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="React">
+                    <i class="devicon-react-original colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="Vite">
+                    <i class="devicon-vitejs-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="C++">
+                    <i class="devicon-cplusplus-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="C#">
+                    <i class="devicon-csharp-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="Java">
+                    <i class="devicon-java-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="Node.js">
+                    <i class="devicon-nodejs-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="npm">
+                    <i class="devicon-npm-original-wordmark colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="SQL">
+                    <i class="devicon-mysql-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="PHP">
+                    <i class="devicon-php-plain colored"></i>
+                </div>
+                <div class="skill-item" data-tooltip="Music Production">
+                    <i class="fa-solid fa-music music-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container scroll-reveal">
+            <h2 class="section-title">Selected Work</h2>
+            <p class="section-subtitle">Open-source tools, developer utilities, and software experiments.</p>
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be injected here by JavaScript -->
+                <div class="loading-spinner">Loading projects...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container scroll-reveal">
+            <h2 class="section-title">Contact Me</h2>
+            
+            <div class="contact-box">
+                <div class="email-display">
+                    <span id="email-text">info@anupam-dhakal.com.np</span>
+                    <button class="copy-btn" onclick="copyEmail()" aria-label="Copy email">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@anupam-dhakal.com.np" target="_blank" class="send-email-btn">
+                    <i class="fa-regular fa-paper-plane"></i> Send Email
+                </a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/anupamdhakal" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.facebook.com/anupam.dhakal.2" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://instagram.com/mintlinuser" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/anupam-dhakal-2955a0412/" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://open.spotify.com/artist/2BWvNBcEzPzYUcnM4MLRPK" target="_blank" class="social-icon" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://www.youtube.com/@anupammusicofficial1" target="_blank" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@anupam.dhakal65" target="_blank" class="social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Anupam Dhakal. All rights reserved.</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Email copied to clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
