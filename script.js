@@ -26,6 +26,12 @@ const projectsData = [
         fallbackDescription: "An all-in-one school management system for attendance, finance, and more using NFC cards.",
         fallbackLanguage: "JavaScript",
     },
+    {
+        github: "https://github.com/anupamdhakal/Multi-OS-Media-Player-MMP-",
+        fallbackTitle: "MMP(Media Player)",
+        fallbackDescription: "An Media Player that is supported across many different OS for easy use and easy to use and install.",
+        fallbackLanguage: "CSS",
+    },
 ];
 
 // ----------------------------------------------------------------------------
