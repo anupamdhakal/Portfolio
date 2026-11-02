@@ -142,7 +142,23 @@ function initScrollReveal() {
 // ----------------------------------------------------------------------------
 // INITIALIZATION
 // ----------------------------------------------------------------------------
+function setTheme(theme) {
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    root.dataset.theme = theme;
+    const isDark = theme === 'dark';
+    toggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} theme`);
+    toggle.innerHTML = `<i class="fa-solid ${isDark ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>`;
+    localStorage.setItem('portfolio-theme', theme);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    const preferredTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    setTheme(savedTheme || preferredTheme);
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
     fetchProjects();
     initScrollReveal();
 });
