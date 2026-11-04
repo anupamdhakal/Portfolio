@@ -47,7 +47,9 @@ function renderProjects() {
     ...projects.map((project, index) => {
       const card = document.createElement("a");
       card.className = "project-card glass reveal";
-      card.dataset.revealVariant = ["left", "rise", "right", "rise", "scale"][index];
+      card.dataset.revealVariant = ["left", "rise", "right", "rise", "scale"][
+        index
+      ];
       card.href = project.url;
       card.target = "_blank";
       card.rel = "noopener noreferrer";
@@ -131,7 +133,8 @@ async function copyEmail() {
     document.querySelector("#copy-dialog").showModal();
   } catch (_) {
     const dialog = document.querySelector("#copy-dialog");
-    document.querySelector("#copy-dialog-title").textContent = "Copy unavailable";
+    document.querySelector("#copy-dialog-title").textContent =
+      "Copy unavailable";
     dialog.showModal();
   }
 }
@@ -193,7 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   document.querySelector("#copy-email").addEventListener("click", copyEmail);
   const copyDialog = document.querySelector("#copy-dialog");
-  document.querySelector("#copy-dialog-done").addEventListener("click", () => copyDialog.close());
+  document
+    .querySelector("#copy-dialog-done")
+    .addEventListener("click", () => copyDialog.close());
   copyDialog.addEventListener("close", () => {
     document.querySelector("#copy-dialog-title").textContent = "Copied";
     document.querySelector("#copy-email").focus();
