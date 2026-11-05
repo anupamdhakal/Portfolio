@@ -86,6 +86,7 @@ async function enrichProjectsFromGitHub(grid) {
         if (data.name) title.textContent = data.name;
         if (data.description) description.textContent = data.description;
         if (data.language) language.textContent = data.language;
+        card.setAttribute("aria-label", `Open ${title.textContent} on GitHub`);
         card.classList.add("api-updated");
       } catch (_) {
         // Keep the included project details visible when GitHub is unavailable.
@@ -126,16 +127,23 @@ async function copyEmail() {
       field.style.position = "fixed";
       field.style.opacity = "0";
       document.body.append(field);
-      field.select();
-      document.execCommand("copy");
-      field.remove();
+      let copied = false;
+      try {
+        field.select();
+        copied = document.execCommand("copy");
+      } finally {
+        field.remove();
+      }
+      if (!copied) throw new Error("Clipboard copy was rejected");
     }
-    document.querySelector("#copy-dialog").showModal();
+    const dialog = document.querySelector("#copy-dialog");
+    document.querySelector("#copy-dialog-title").textContent = "Copied";
+    if (!dialog.open) dialog.showModal();
   } catch (_) {
     const dialog = document.querySelector("#copy-dialog");
     document.querySelector("#copy-dialog-title").textContent =
       "Copy unavailable";
-    dialog.showModal();
+    if (!dialog.open) dialog.showModal();
   }
 }
 
@@ -186,6 +194,22 @@ function enableCardLight(cards) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const pageProgress = document.querySelector(".scroll-progress");
+  let progressFrame = 0;
+  const updatePageProgress = () => {
+    if (progressFrame) return;
+    progressFrame = requestAnimationFrame(() => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const amount = scrollable > 0 ? window.scrollY / scrollable : 0;
+      pageProgress?.style.setProperty("--page-progress", String(Math.min(1, Math.max(0, amount))));
+      progressFrame = 0;
+    });
+  };
+  window.addEventListener("scroll", updatePageProgress, { passive: true });
+  window.addEventListener("resize", updatePageProgress, { passive: true });
+  window.addEventListener("load", updatePageProgress, { once: true });
+  updatePageProgress();
+
   setTheme(document.documentElement.dataset.theme || "dark", false);
   document
     .querySelector("#theme-toggle")
@@ -219,14 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
     navbar.addEventListener("focusout", (event) => {
       if (!navbar.contains(event.relatedTarget)) closeSoon();
     });
-    navbar.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        clearTimeout(navCloseTimer);
-        navbar.classList.remove("is-open");
-        document.querySelector("#theme-toggle").focus();
-        navCloseTimer = setTimeout(() => navbar.classList.remove("is-open"), 0);
-      }
-    });
   }
   renderProjects();
   observeReveals();
@@ -241,12 +257,12 @@ document.addEventListener("DOMContentLoaded", () => {
       (entries) =>
         entries.forEach((entry) => {
           if (entry.isIntersecting)
-            links.forEach((link) =>
-              link.classList.toggle(
-                "active",
-                link.hash === `#${entry.target.id}`,
-              ),
-            );
+            links.forEach((link) => {
+              const active = link.hash === `#${entry.target.id}`;
+              link.classList.toggle("active", active);
+              if (active) link.setAttribute("aria-current", "location");
+              else link.removeAttribute("aria-current");
+            });
         }),
       { rootMargin: "-35% 0px -55% 0px" },
     );
