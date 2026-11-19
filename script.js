@@ -273,3 +273,4 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach((section) => navObserver.observe(section));
   }
 });
+
