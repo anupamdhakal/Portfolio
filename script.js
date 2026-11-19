@@ -41,39 +41,42 @@ const projects = [
   },
 ];
 
-const projectIcons = [
-  "fa-screwdriver-wrench",
-  "fa-network-wired",
-  "fa-arrow-up-right-from-square",
-  "fa-address-card",
-  "fa-compact-disc",
-];
-
 function renderProjects() {
   const grid = document.querySelector("#projects-grid");
   grid.replaceChildren(
     ...projects.map((project, index) => {
       const card = document.createElement("a");
-      card.className = "project-entry";
+      card.className = "project-card glass reveal";
+      card.dataset.revealVariant = ["left", "rise", "right", "rise", "scale"][
+        index
+      ];
       card.href = project.url;
       card.target = "_blank";
       card.rel = "noopener noreferrer";
       card.setAttribute("aria-label", `Open ${project.name} on GitHub`);
-      card.innerHTML = `<span class="project-entry-index">${project.mark}</span><span class="project-entry-icon" aria-hidden="true"><i class="fa-solid ${projectIcons[index]}"></i></span><span class="project-entry-copy"><strong class="project-name">${project.name}</strong><small class="project-description">${project.description}</small></span><span class="project-language"><i></i><span>${project.language}</span></span><i class="fa-solid fa-arrow-up-right-from-square project-entry-arrow" aria-hidden="true"></i>`;
+      card.style.setProperty("--card-index", index);
+      card.innerHTML = `<div class="project-topline"><span class="card-index">${project.mark} / 05</span><i class="fa-brands fa-github project-logo" aria-hidden="true"></i></div><h3 class="project-name">${project.name}</h3><p class="project-description">${project.description}</p><div class="project-bottom"><span class="project-language"><i></i><span>${project.language}</span></span><span class="project-cta">View repository <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span></div>`;
+      card.dataset.repo = project.url.split("/").pop();
       return card;
     }),
   );
+  observeReveals(grid.querySelectorAll(".reveal"));
+  enableCardLight(grid.querySelectorAll(".project-card"));
   enrichProjectsFromGitHub(grid);
 }
 
 async function enrichProjectsFromGitHub(grid) {
+  const cards = [...grid.querySelectorAll(".project-card")];
   await Promise.all(
-    [...grid.querySelectorAll(".project-entry")].map(async (card) => {
-      const repo = card.href.split("/").pop();
+    cards.map(async (card) => {
+      const repo = card.dataset.repo;
       try {
         const response = await fetch(
           `https://api.github.com/repos/anupamdhakal/${encodeURIComponent(repo)}`,
-          { headers: { Accept: "application/vnd.github+json" }, signal: AbortSignal.timeout(5000) },
+          {
+            headers: { Accept: "application/vnd.github+json" },
+            signal: AbortSignal.timeout(5000),
+          },
         );
         if (!response.ok) return;
         const data = await response.json();
@@ -84,8 +87,9 @@ async function enrichProjectsFromGitHub(grid) {
         if (data.description) description.textContent = data.description;
         if (data.language) language.textContent = data.language;
         card.setAttribute("aria-label", `Open ${title.textContent} on GitHub`);
+        card.classList.add("api-updated");
       } catch (_) {
-        // The authored project details remain visible when GitHub is unavailable.
+        // Keep the included project details visible when GitHub is unavailable.
       }
     }),
   );
@@ -101,8 +105,8 @@ function setTheme(theme, persist = true) {
   );
   button.innerHTML = `<i class="fa-solid ${dark ? "fa-sun" : "fa-moon"}" aria-hidden="true"></i>`;
   document.querySelector('meta[name="theme-color"]').content = dark
-    ? "#080b17"
-    : "#f2f3fb";
+    ? "#10151c"
+    : "#f2f4f2";
   if (persist) {
     try {
       localStorage.setItem("portfolio-theme", theme);
@@ -195,9 +199,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const updatePageProgress = () => {
     if (progressFrame) return;
     progressFrame = requestAnimationFrame(() => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
       const amount = scrollable > 0 ? window.scrollY / scrollable : 0;
-      pageProgress?.style.setProperty("--page-progress", String(Math.min(1, Math.max(0, amount))));
+      pageProgress?.style.setProperty(
+        "--page-progress",
+        String(Math.min(1, Math.max(0, amount))),
+      );
       progressFrame = 0;
     });
   };
@@ -242,28 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   renderProjects();
   observeReveals();
-  const navMenu = document.querySelector("#nav-menu");
-  navMenu.addEventListener("click", () => {
-    const open = navbar.classList.toggle("is-open");
-    navMenu.setAttribute("aria-expanded", String(open));
-    navMenu.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-    navMenu.innerHTML = `<i class="fa-solid ${open ? "fa-xmark" : "fa-bars"}" aria-hidden="true"></i>`;
-  });
-  document.querySelectorAll(".nav-links a").forEach((link) =>
-    link.addEventListener("click", () => {
-      navbar.classList.remove("is-open");
-      navMenu.setAttribute("aria-expanded", "false");
-      navMenu.setAttribute("aria-label", "Open navigation");
-      navMenu.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
-    }),
+  enableCardLight(
+    document.querySelectorAll(".tool-card, .maker-card, .music-feature"),
   );
-  const wave = document.querySelector(".editorial-wave");
-  wave.replaceChildren(...Array.from({ length: 37 }, (_, index) => {
-    const bar = document.createElement("i");
-    const height = 12 + Math.abs(Math.sin(index * 0.71) * Math.cos(index * 0.19)) * 78;
-    bar.style.height = `${Math.round(height)}px`;
-    return bar;
-  }));
 
   const sections = [...document.querySelectorAll("main section[id]")];
   const links = [...document.querySelectorAll(".nav-links a")];
